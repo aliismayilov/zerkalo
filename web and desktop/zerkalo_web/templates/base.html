@@ -4,9 +4,9 @@
 <head>
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="{{ STATIC_URL }}imageflow/imageflow.packed.css" type="text/css" />
-    {% block js %}
-    {% endblock %}
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/blue.css" type="text/css" />
+    {% comment %}{% block js %}{% endblock %}{% endcomment %}
+    <script src="{{ STATIC_URL }}imageflow/imageflow.packed.js"></script>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/main.css" type="text/css" />
     <script src="{{ STATIC_URL }}js/jquery-1.6.1.min.js"></script>
     <script type="text/javascript">
         {% include "calendar.js" %}

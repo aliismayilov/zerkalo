@@ -4,9 +4,10 @@
 <head>
     <title>{{ edition.date|date:"j F Y" }}</title>
     <link rel="stylesheet" href="{{ STATIC_URL }}imageflow/imageflow.packed.css" type="text/css" />
-    <script type="text/javascript">
+    <script src="{{ STATIC_URL }}imageflow/imageflow.packed.js"></script>
+    {% comment %}<script type="text/javascript">
         {% include "imageflow.js" %}
-    </script>
+    </script>{% endcomment %}
     <link rel="stylesheet" href="{{ STATIC_URL }}css/main.css" type="text/css" />
     <script src="{{ STATIC_URL }}js/jquery-1.6.1.min.js"></script>
     <script type="text/javascript">
