@@ -21,48 +21,52 @@ class Edition(models.Model):
     
     def save(self, *args, **kwargs):
         if not self.pdf:
-            # output path
+            print 'output path'
             output_path = os.path.join(settings.MEDIA_ROOT, 'output')
             
-            # empty the output directory
+            print 'empty the output directory'
             for entity in os.listdir(output_path):
                 file_path = os.path.join(output_path, entity)
                 if os.path.isfile(file_path):
                     os.remove(file_path)
             
-            # initial save
+            print 'initial save'
             super(Edition, self).save(*args, **kwargs)
             
-            # open zip, extract and close
+            print 'open zip, extract and close'
             zip = ZipFile(self.output.path)
             zip.extractall(output_path)
             zip.close()
             
-            # take pdf file
+            print 'take pdf file'
             pdf_file = File(open(os.path.join(output_path, 'file.pdf'), 'rb'))
             
-            # save pdf file and edition object
+            print 'save pdf file and edition object'
             self.pdf.save(
                 self.date.strftime("%Y-%m-%d.pdf"),
                 pdf_file
             )
             pdf_file.close()
             
-            # remove pdf file from output path
+            print 'remove pdf file from output path'
             os.remove(pdf_file.name)
             
             i = 1
             for entry in os.listdir(output_path):
                 if entry.endswith('.txt'):
+                    print 'create new Page object'
                     page = Page()
+                    
                     page.edition = self
                     
                     page.number = i
                     
+                    print 'get txt file with page text contents'
                     txt_file = open(os.path.join(output_path, entry))
                     page.text = txt_file.read()
                     txt_file.close()
                     
+                    print 'attach screenshot of pdf page'
                     img_file = ImageFile(
                         open(
                             os.path.join(
@@ -77,11 +81,12 @@ class Edition(models.Model):
                         self.date.strftime("%Y-%m-%d.png")[:-4] + '-%d.png' % i,
                         img_file
                     )
+                    img_file.close()
                     
-                    # take pdf file
+                    print 'take pdf file'
                     pdf_page_file = File(open(os.path.join(output_path, 'file-%d.pdf' % (i - 1)), 'rb'))
                     
-                    # save pdf file and edition object
+                    print 'save pdf file and edition object'
                     page.pdf.save(
                         # self.date.strftime("%Y-%m-%d.pdf").replace('.pdf', '-%d.pdf' % i),
                         self.date.strftime("%Y-%m-%d.pdf")[:-4] + '-%d.pdf' % i,
@@ -89,14 +94,14 @@ class Edition(models.Model):
                     )
                     pdf_page_file.close()
                         
-                    
+                    print 'increase counter'
                     i = i + 1
                 
-                # remove processed file
-                file_path = os.path.join(output_path, entry)
+            print 'empty the output directory'
+            for entity in os.listdir(output_path):
+                file_path = os.path.join(output_path, entity)
                 if os.path.isfile(file_path):
                     os.remove(file_path)
-                # print os.path.join(output_path, entry)
         else:
             # super(Edition, self).save(*args, **kwargs)
             pass
