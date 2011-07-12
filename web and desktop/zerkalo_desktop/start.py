@@ -17,7 +17,8 @@ pdf_filename = askopenfilename(
     title="Choose PDF File",
     filetypes=[
         ("PDF file", ".pdf"),
-        ]
+        ],
+    initialdir="%UserProfile%",
     )
 print "Chosen file: %s" % pdf_filename
 
@@ -68,7 +69,8 @@ pdf_file.close()
 # choose output zip filename
 zip_filename = asksaveasfilename(
     title="Save as",
-    initialfile=datetime.datetime.now().strftime("%Y-%m-%d.zip")
+    initialfile=datetime.datetime.now().strftime("%Y-%m-%d.zip"),
+    initialdir="%UserProfile%\\Desktop",
     )
 
 # zip output folder
@@ -89,4 +91,4 @@ zip_file.close()
 print "done!"
 
 # wait 5 seconds and close the window
-time.sleep(5)
+time.sleep(4)
