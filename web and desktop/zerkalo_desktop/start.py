@@ -30,6 +30,7 @@ pdf_filename = os.path.join(output_folder, "file.pdf")
 # convert to image set
 print "generating screenshots..."
 os.system(
+    # "%PROGRAMFILES%\\ImageMagick-6.7.0-Q16\\convert.exe \"%s\" -resize 500x500 \"%s\\scr.png\"" % (
     "convert \"%s\" -resize 500x500 \"%s\\scr.png\"" % (
         pdf_filename,
         output_folder

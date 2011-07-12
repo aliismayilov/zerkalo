@@ -1,4 +1,6 @@
 import os
+import sys
+import time
 from xml.dom.minidom import parse
 
 from libs.PIL import Image
@@ -120,4 +122,7 @@ def empty_directory(path):
             if os.path.isfile(file_path):
                 os.remove(file_path)
         except Exception, e:
+            # print exception, wait 10 seconds and terminate
             print e
+            time.sleep(10)
+            sys.exit(1)
