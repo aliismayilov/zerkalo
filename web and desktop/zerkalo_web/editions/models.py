@@ -100,6 +100,7 @@ class Edition(models.Model):
             print 'empty the output directory'
             for entity in os.listdir(output_path):
                 file_path = os.path.join(output_path, entity)
+                print file_path
                 if os.path.isfile(file_path):
                     os.remove(file_path)
         else:
