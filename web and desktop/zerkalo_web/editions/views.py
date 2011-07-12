@@ -30,16 +30,21 @@ def show(request, year=None, month=None, day=None):
         context_instance=RequestContext(request)
     )
 
-def search(request, query):
-    list = Page.objects.filter(index__icontains=unicode(query))
+def search(request):
+    q = request.GET.get('q')
     
-    return render_to_response('search.html', {
-            'edition': Edition.objects.get(pk=1),
-            'list': list,
-            'query': query,
-        },
-        context_instance=RequestContext(request)
-    )
+    if q:
+        list = Page.objects.filter(index__icontains=unicode(query))
+    
+        return render_to_response('search.html', {
+                'edition': Edition.objects.get(pk=1),
+                'list': list,
+                'query': query,
+            },
+            context_instance=RequestContext(request)
+        )
+    else:
+        return redirect("/")
 
 def search_redirect(request):
     q = request.GET.get('q')
