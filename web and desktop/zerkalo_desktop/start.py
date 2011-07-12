@@ -1,8 +1,9 @@
 import os
-from tkFileDialog import askopenfilename
+from tkFileDialog import askopenfilename, asksaveasfilename
 from shutil import copyfile
 import zipfile
 import time
+import datetime
 
 from libs.pyPdf import PdfFileWriter, PdfFileReader
 
@@ -63,10 +64,16 @@ for i in range(0, pdf.getNumPages()):
 # close pdf file
 pdf_file.close()
 
+# choose output zip filename
+zip_filename = asksaveasfilename(
+    title="Save as",
+    initialfile=datetime.datetime.now().strftime("%Y-%m-%d.zip")
+    )
+
 # zip output folder
 print "zipping output files"
 output_files = os.listdir(output_folder)
-zip_filename = os.path.join(output_folder, "output.zip")
+# zip_filename = os.path.join(output_folder, "output.zip")
 zip_file = zipfile.ZipFile(zip_filename, "w")
 
 for entity in output_files:
