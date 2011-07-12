@@ -21,11 +21,17 @@ class Edition(models.Model):
     
     def save(self, *args, **kwargs):
         if not self.pdf:
-            # initial save
-            super(Edition, self).save(*args, **kwargs)
-            
             # output path
             output_path = os.path.join(settings.MEDIA_ROOT, 'output')
+            
+            # empty the output directory
+            for entity in os.listdir(output_path):
+                file_path = os.path.join(output_path, entity)
+                if os.path.isfile(file_path):
+                    os.remove(file_path)
+            
+            # initial save
+            super(Edition, self).save(*args, **kwargs)
             
             # open zip, extract and close
             zip = ZipFile(self.output.path)
@@ -44,7 +50,6 @@ class Edition(models.Model):
             
             # remove pdf file from output path
             os.remove(pdf_file.name)
-            super(Edition, self).save(*args, **kwargs)
             
             i = 1
             for entry in os.listdir(output_path):
@@ -55,7 +60,7 @@ class Edition(models.Model):
                     page.number = i
                     
                     txt_file = open(os.path.join(output_path, entry))
-                    page.index = txt_file.read()
+                    page.text = txt_file.read()
                     txt_file.close()
                     
                     img_file = ImageFile(
@@ -68,7 +73,8 @@ class Edition(models.Model):
                         )
                     )
                     page.screenshot.save(
-                        self.date.strftime("%Y-%m-%d.png").replace('.png', '-%d.png' % i),
+                        # self.date.strftime("%Y-%m-%d.png").replace('.png', '-%d.png' % i),
+                        self.date.strftime("%Y-%m-%d.png")[:-4] + '-%d.png' % i,
                         img_file
                     )
                     
@@ -77,18 +83,23 @@ class Edition(models.Model):
                     
                     # save pdf file and edition object
                     page.pdf.save(
-                        self.date.strftime("%Y-%m-%d.pdf").replace('.pdf', '-%d.pdf' % i),
+                        # self.date.strftime("%Y-%m-%d.pdf").replace('.pdf', '-%d.pdf' % i),
+                        self.date.strftime("%Y-%m-%d.pdf")[:-4] + '-%d.pdf' % i,
                         pdf_page_file
                     )
                     pdf_page_file.close()
                         
                     
                     i = i + 1
-                    
-                # os.remove(os.path.join(output_path, entry))
-                print os.path.join(output_path, entry)
+                
+                # remove processed file
+                file_path = os.path.join(output_path, entry)
+                if os.path.isfile(file_path):
+                    os.remove(file_path)
+                # print os.path.join(output_path, entry)
         else:
-            super(Edition, self).save(*args, **kwargs)
+            # super(Edition, self).save(*args, **kwargs)
+            pass
     def get_absolute_url(self):
         return "/%s" % self.date.strftime("%Y-%m-%d")
 
@@ -97,7 +108,7 @@ class Page(models.Model):
     screenshot = models.ImageField(upload_to='scr')
     pdf = models.FileField(upload_to='pdf')
     number = models.IntegerField() # page number
-    index = models.TextField()
+    text = models.TextField()
     
     def get_absolute_url(self):
         return self.screenshot.url
