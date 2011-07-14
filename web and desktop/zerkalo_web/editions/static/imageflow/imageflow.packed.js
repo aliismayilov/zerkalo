@@ -40,5 +40,10 @@ eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a
 domReady(function()
 {
 	var instanceOne = new ImageFlow();
-	instanceOne.init({ ImageFlowID:'myImageFlow' });
+	instanceOne.init({
+        ImageFlowID:'myImageFlow',
+        reflections: false, 
+        reflectionP: 0.0,
+        opacity: true,
+        imageCursor: 'pointer',
 });
