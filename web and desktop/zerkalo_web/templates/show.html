@@ -4,12 +4,18 @@
 <head>
     <title>{{ edition.date|date:"j F Y" }}</title>
     <link rel="stylesheet" href="{{ STATIC_URL }}imageflow/imageflow.packed.css" type="text/css" />
-    <script src="{{ STATIC_URL }}imageflow/imageflow.packed.js"></script>
-    {% comment %}<script type="text/javascript">
+    {% comment %}<script src="{{ STATIC_URL }}imageflow/imageflow.packed.js"></script>{% endcomment %}
+    <script type="text/javascript">
         {% include "imageflow.js" %}
-    </script>{% endcomment %}
+    </script>
     <link rel="stylesheet" href="{{ STATIC_URL }}css/main.css" type="text/css" />
     <script src="{{ STATIC_URL }}js/jquery-1.6.1.min.js"></script>
+    <script type="text/javascript">
+        /*$(document).ready(function() {
+            $('#myImageFlow').css.height = '592px';
+        });*/
+        // document.getElementById('myImageFlow').style.height = '592px';
+    </script>
     <script type="text/javascript">
         {% include "calendar.js" %}
     </script>
@@ -45,7 +51,6 @@
     <img src="{{ page.screenshot.url }}" longdesc="{{ page.pdf.url }}" width="{{ page.screenshot.width }}" height="{{ page.screenshot.height }}" alt="" />
 {% endfor %}
 </div>
-
 <div id="chapterList">
 {% for chapter in edition.chapter_set.all %}
     <input type="button" value="{{ chapter.name }}" id="jump{{ forloop.counter }}" />

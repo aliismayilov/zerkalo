@@ -8,13 +8,12 @@
 #top-bar {
     width: 100%;
     height: 39px;
-    float: left;
-    top: 25px;
-    position: absolute;
     background: #fff;
     color: #68a2c3;
     font-size: 10pt;
     background: url(../img/top-bar.gif);
+    margin-top: 25px;
+    margin-bottom: 20px;
 }
 
 #top-bar #calendar-icon {
@@ -97,10 +96,12 @@
 #chapterList {
     color: #fff;
     text-align: center;
-    position: relative;
+    position: absolute;
+    width: 100%;
     z-index: 100;
     margin: auto;
     margin-top: -40px;
+    bottom: 70px;
 }
 
 #chapterList input {
@@ -116,9 +117,10 @@
 }
 
 #copyright {
-    float: left;
-    position: relative;
+    position: absolute;
     z-index: 99;
     color: #fff;
     font-size: 8pt;
+    left: 15px;
+    bottom: 10px;
 }

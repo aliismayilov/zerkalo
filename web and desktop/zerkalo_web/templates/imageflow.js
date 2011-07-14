@@ -1469,6 +1469,7 @@ domReady(function()
         ImageFlowID:'myImageFlow',
         reflections: false, 
         reflectionP: 0.0,
+        preloadImages: false,
         opacity: true,
         imageCursor: 'pointer',
     });
