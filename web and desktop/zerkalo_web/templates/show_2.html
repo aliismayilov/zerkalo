@@ -1,0 +1,83 @@
+﻿{% comment %} for advanced mobile browsers, see middleware {% endcomment %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <title>{{ edition.date|date:"j F Y" }}</title>
+    <link rel="stylesheet" href="{{ STATIC_URL }}imageflow/imageflow.packed.css" type="text/css" />
+    {% comment %}<script src="{{ STATIC_URL }}imageflow/imageflow.packed.js"></script>{% endcomment %}
+    <script type="text/javascript">
+        {% include "imageflow.js" %}
+    </script>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/main_2.css" type="text/css" />
+</head>
+<body>
+<div id="search">
+    <form method="get" action="/search.html" id="search-form">
+        <input name="q" type="text" value="{{ query }}" />
+        <a href="javascript():" onclick="document.getElementById('search-form').submit(); return false;"></a>
+    </form>
+</div>
+<div id="top-bar">
+    <a href="/" id="calendar-icon"></a>
+    <input type="text" id="day" maxlength="2" />
+    <select id="month">
+        <option value="1">Январь</option>
+        <option value="2">Февраль</option>
+        <option value="3">Март</option>
+        <option value="4">Апрель</option>
+        <option value="5">Май</option>
+        <option value="6">Июнь</option>
+        <option value="7">Июль</option>
+        <option value="8">Август</option>
+        <option value="9">Сентябрь</option>
+        <option value="10">Октябрь</option>
+        <option value="11">Ноябрь</option>
+        <option value="12">Декабрь</option>
+    </select>
+    <select id="year">
+        <option value="2009">2009</option>
+        <option value="2010">2010</option>
+        <option value="2011">2011</option>
+    </select>
+    <input type="button" value="->" onclick="goTo()" />
+    <script type="text/javascript">
+        // set to current date
+        var months = document.getElementById("month").getElementsByTagName("option");
+        months[{{ edition.date|date:"m" }} - 1].setAttribute('selected', 'selected');
+        
+        var years = document.getElementById("year").getElementsByTagName("option");
+        years[{{ edition.date|date:"Y" }} - 2009].setAttribute('selected', 'selected');
+        
+        function goTo() {
+            // go to date
+            var day = document.getElementById("day").value;
+            if (day == null)
+                return;
+            var month = document.getElementById("month").value;
+            var year = document.getElementById("year").value;
+            window.location = "/" + year + "-" + month + "-" + day;
+        }
+    </script>
+</div>
+
+<div id="myImageFlow" class="imageflow">
+{% for page in edition.page_set.all %}
+    <img src="{{ page.screenshot.url }}" longdesc="{{ page.pdf.url }}" width="{{ page.screenshot.width }}" height="{{ page.screenshot.height }}" alt="" />
+{% endfor %}
+</div>
+<div id="chapterList">
+{% for chapter in edition.chapter_set.all %}
+    <input type="button" value="{{ chapter.name }}" id="jump{{ forloop.counter }}" />
+{% endfor %}
+</div>
+<table id="copyright">
+    <tr>
+        <td>
+            <img src="{{ STATIC_URL }}img/logo.png" width="70" height="27" alt="zerkalo.az" />
+        </td>
+        <td>&copy; {% now "Y" %}</td>
+    </tr>
+</table>
+</body>
+</html>

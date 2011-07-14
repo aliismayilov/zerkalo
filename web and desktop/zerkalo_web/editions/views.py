@@ -6,6 +6,8 @@ from editions.models import *
 import datetime
 
 def show(request, year=None, month=None, day=None):
+    
+    # build a date
     if year and month and day:
         year = int(year)
         month = int(month)
@@ -15,6 +17,7 @@ def show(request, year=None, month=None, day=None):
     else:
         date = datetime.datetime.today()
     
+    # get edition object, if not redirect to the latest
     try:
         edition = Edition.objects.get(date=date)
     except Edition.DoesNotExist:
@@ -24,11 +27,21 @@ def show(request, year=None, month=None, day=None):
             edition = Edition.objects.all()[0]
         redirect(edition.date.strftime("/%Y-%m-%d"))
     
-    return render_to_response('show.html', {
-            'edition': edition,
-        },
-        context_instance=RequestContext(request)
-    )
+    # browser level 1 - full, desktop
+    if request.browser_level == 1:
+        return render_to_response('show_1.html', {
+                'edition': edition,
+            },
+            context_instance=RequestContext(request)
+        )
+    
+    # browser level 2 - advanced, e.g. iphone, android
+    elif request.browser_level == 2:
+        return render_to_response('show_2.html', {
+                'edition': edition,
+            },
+            context_instance=RequestContext(request)
+        )
 
 def search(request):
     q = request.GET.get('q')
