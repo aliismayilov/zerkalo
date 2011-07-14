@@ -1,3 +1,5 @@
 syntax: glob
 *.db
 *.pyc
+web and desktop/zerkalo_web/media/pdf/*.pdf
+web and desktop/zerkalo_web/media/scr/*.png
