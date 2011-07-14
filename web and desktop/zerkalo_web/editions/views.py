@@ -42,6 +42,14 @@ def show(request, year=None, month=None, day=None):
             },
             context_instance=RequestContext(request)
         )
+    
+    # browser level 3 - all other mobile devices
+    else:
+        return render_to_response('show_3.html', {
+                'edition': edition,
+            },
+            context_instance=RequestContext(request)
+        )
 
 def search(request):
     q = request.GET.get('q')
