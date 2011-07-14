@@ -56,21 +56,35 @@ def search(request):
     
     if q:
         list = Page.objects.filter(index__icontains=unicode(query))
-    
-        return render_to_response('search.html', {
-                'edition': Edition.objects.get(pk=1),
-                'list': list,
-                'query': query,
-            },
-            context_instance=RequestContext(request)
-        )
+        
+        # browser level 1 - full, desktop
+        if request.browser_level == 1:
+            return render_to_response('search_1.html', {
+                    'edition': Edition.objects.get(pk=1),
+                    'list': list,
+                    'query': query,
+                },
+                context_instance=RequestContext(request)
+            )
+        
+        # browser level 2 - advanced, e.g. iphone, android
+        elif request.browser_level == 2:
+            return render_to_response('search_2.html', {
+                    'edition': Edition.objects.get(pk=1),
+                    'list': list,
+                    'query': query,
+                },
+                context_instance=RequestContext(request)
+            )
+        
+        # browser level 3 - all other mobile devices
+        else:
+            return render_to_response('search_3.html', {
+                    'edition': Edition.objects.get(pk=1),
+                    'list': list,
+                    'query': query,
+                },
+                context_instance=RequestContext(request)
+            )
     else:
         return redirect("/")
-
-def search_redirect(request):
-    q = request.GET.get('q')
-    
-    if q:
-        return redirect("/search/%s" % q, permanent=True)
-    else:
-        return redirect("/", permanent=True)
