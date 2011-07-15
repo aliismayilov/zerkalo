@@ -57,6 +57,7 @@
 {% for chapter in edition.chapter_set.all %}
     <input type="button" value="{{ chapter.name }}" id="jump{{ forloop.counter }}" />
 {% endfor %}
+    <a href="{{ edition.pdf.url }}" id="full-link">Прочесть PDF в полном формате</a>
 </div>
 <table id="copyright">
     <tr>
