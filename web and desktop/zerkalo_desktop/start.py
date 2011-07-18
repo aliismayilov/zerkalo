@@ -82,10 +82,10 @@ zip_file = zipfile.ZipFile(zip_filename, "w")
 for entity in output_files:
     filename = os.path.join(output_folder, entity)
 
-    if os.path.isfile(filename):
+    if os.path.isfile(filename) and not '.empty' in filename: # don't add .empty files
         zip_file.write(filename, entity)
-
-    os.remove(filename)
+    if not '.empty' in filename: # don't remove .empty files
+        os.remove(filename)
 
 zip_file.close()
 print "done!"

@@ -27,7 +27,7 @@ class Edition(models.Model):
             # empty the output directory
             for entity in os.listdir(output_path):
                 file_path = os.path.join(output_path, entity)
-                if os.path.isfile(file_path):
+                if os.path.isfile(file_path) and not '.empty' in filename: # don't remove .empty files
                     os.remove(file_path)
             
             # initial save
@@ -101,7 +101,7 @@ class Edition(models.Model):
             for entity in os.listdir(output_path):
                 file_path = os.path.join(output_path, entity)
                 print file_path
-                if os.path.isfile(file_path):
+                if os.path.isfile(file_path) and not '.empty' in filename: # don't remove .empty files
                     os.remove(file_path)
         else:
             # super(Edition, self).save(*args, **kwargs)
