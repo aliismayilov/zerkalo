@@ -119,7 +119,7 @@ def empty_directory(path):
     for the_file in os.listdir(path):
         file_path = os.path.join(path, the_file)
         try:
-            if os.path.isfile(file_path) and not '.empty' in filename: # don't remove .empty files
+            if os.path.isfile(file_path) and not '.empty' in file_path: # don't remove .empty files
                 os.remove(file_path)
         except Exception, e:
             # print exception, wait 10 seconds and terminate
