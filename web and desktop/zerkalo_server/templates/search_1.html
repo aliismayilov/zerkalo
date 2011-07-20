@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <title>Результаты для {{ query }}</title>
+    <link rel="stylesheet" href="{{ STATIC_URL }}imageflow/imageflow.packed.css" type="text/css" />
+    <script type="text/javascript" src="{{ STATIC_URL }}imageflow/imageflow.packed.js"></script>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/main_1.css" type="text/css" />
+    <script src="{{ STATIC_URL }}js/jquery-1.6.1.min.js"></script>
+    <script type="text/javascript">
+        {% include "calendar.js" %}
+    </script>
+    <link rel="shortcut icon" href="/static/favicon.ico" />
+</head>
+<body>
+<div id="top-bar">
+    <a href="/" id="calendar-icon"></a>
+    <div class="year-month">
+        <div id="year-up" onmousedown="yearUp()"></div>
+        <div class="year-month-container">
+            <div id="years"></div>
+        </div>
+        <div id="year-down" onmousedown="yearDown()"></div>
+    </div>
+    <div class="year-month">
+        <div id="month-up" onmousedown="monthUp()"></div>
+        <div class="year-month-container">
+            <div id="months">Декабрь<br />Ноябрь<br />Октябрь<br />Сентябрь<br />Август<br />Июль<br />Июнь<br />Май<br />Апрель<br />Март<br />Февраль<br />Январь</div>
+        </div>
+        <div id="month-down" onmousedown="monthDown()"></div>
+    </div>
+    <div id="days"></div>
+    <div id="search">
+        <form method="get" action="/search.html">
+            <input name="q" type="text" value="{{ query }}" />
+            <a href="javascript():" onclick="document.getElementById('search-form').submit(); return false;"></a>
+        </form>
+    </div>
+</div>
+
+{% if list %}
+    <div id="myImageFlow" class="imageflow">
+        {% for page in list %}
+            <img src="{{ page.screenshot.url }}" longdesc="{{ page.pdf.url }}" width="{{ page.screenshot.width }}" height="{{ page.screenshot.height }}" alt="{{ page.edition.date|date:"j F Y" }}, страница {{ page.number }}" />
+        {% endfor %}
+    </div>
+{% else %}
+    <div style="text-align: center; color: white; font-size: 14pt;">
+    {{ query }} не найдено.
+    </div>
+{% endif %}
+
+<table id="copyright">
+    <tr>
+        <td>
+            <img src="{{ STATIC_URL }}img/logo.png" width="70" height="27" alt="zerkalo.az" />
+        </td>
+        <td>&copy; {% now "Y" %}</td>
+    </tr>
+</table>
+</body>
+</html>

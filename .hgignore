@@ -3,3 +3,5 @@ syntax: glob
 *.pyc
 web and desktop/zerkalo_web/media/pdf/*.pdf
 web and desktop/zerkalo_web/media/scr/*.png
+web and desktop/zerkalo_web/media/scr/*.jpg
+zerkalo_server/*.zip

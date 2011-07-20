@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ STATIC_URL }}imageflow/imageflow.packed.css" type="text/css" />
+    {% comment %}{% block js %}{% endblock %}{% endcomment %}
+    <script src="{{ STATIC_URL }}imageflow/imageflow.packed.js"></script>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/main.css" type="text/css" />
+    <script src="{{ STATIC_URL }}js/jquery-1.6.1.min.js"></script>
+    <script type="text/javascript">
+        {% include "calendar.js" %}
+    </script>
+</head>
+<body>
+<div id="top-bar">
+    {% block calendar %}
+    {% endblock %}
+    <div id="search">
+        <form method="get" action="/search.html" id="search-form">
+            <input name="q" type="text" value="{{ query }}" />
+            <a href="javascript:()" onclick="document.getElementById('search-form').submit(); return false;"></a>
+        </form>
+    </div>
+</div>
+
+{% block content %}
+{% endblock %}
+
+{% block chapters %}
+{% endblock %}
+
+<table id="copyright">
+    <tr>
+        <td>
+            <img src="{{ STATIC_URL }}img/logo.png" width="70" height="27" alt="zerkalo.az" />
+        </td>
+        <td>&copy; {% now "Y" %}</td>
+    </tr>
+</table>
+</body>
+</html>
