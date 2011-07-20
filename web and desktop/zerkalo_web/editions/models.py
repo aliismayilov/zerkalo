@@ -73,13 +73,13 @@ class Edition(models.Model):
                         open(
                             os.path.join(
                                 output_path,
-                                'scr-%d.png' % (i - 1)
+                                'scr-%d.jpg' % (i - 1)
                             ),
                             'rb'
                         )
                     )
                     page.screenshot.save(
-                        self.date.strftime("%Y-%m-%d.png")[:-4] + '-%d.png' % i,
+                        self.date.strftime("%Y-%m-%d.jpg")[:-4] + '-%d.jpg' % i,
                         img_file
                     )
                     img_file.close()
