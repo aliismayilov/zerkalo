@@ -35,9 +35,12 @@ $(document).ready(function() {
         $('#months').css('margin-top', -16 * (12 - editionMonth));
     }
 
-
+    // Internet Explorer trick
     if (navigator.appName == "Microsoft Internet Explorer" && document.getElementById('myImageFlow_images') == null)
         location.reload();
+        
+    // remove bottom pad
+    $('#myImageFlow').css('height', '-=40');
 });
 
 function pad(num) {
