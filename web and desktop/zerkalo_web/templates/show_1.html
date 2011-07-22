@@ -14,6 +14,9 @@
         {% include "calendar.js" %}
     </script>
     <link rel="shortcut icon" href="/static/favicon.ico" />
+    <script type="text/javascript" src="https://apis.google.com/js/plusone.js">
+        {lang: 'ru'}
+    </script>   
 </head>
 <body>
 <div id="top-bar">
@@ -52,12 +55,19 @@
 {% endfor %}
     <a href="{{ edition.pdf.url }}" id="full-link">Прочесть PDF в полном формате</a>
 </div>
+<div id="share">
+    <iframe src="http://www.facebook.com/plugins/like.php?app_id=121980491228556&amp;href={{ edition.get_absolute_url }}&amp;send=false&amp;layout=button_count&amp;width=150&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:150px; height:21px;" allowTransparency="true"></iframe>
+    <br />
+    <a href="http://twitter.com/share" class="twitter-share-button" data-url="{{ edition.get_absolute_url }}" data-count="horizontal">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+    <br />
+    <g:plusone size="medium" href="{{ edition.get_absolute_url }}"></g:plusone>
+</div>
 <table id="copyright">
     <tr>
+        <td>{% now "Y" %} &copy;</td>
         <td>
             <img src="{{ STATIC_URL }}img/logo.gif" width="70" height="27" alt="zerkalo.az" />
         </td>
-        <td>&copy; {% now "Y" %}</td>
     </tr>
 </table>
 </body>

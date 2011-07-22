@@ -128,13 +128,24 @@
     text-decoration: underline;
 }
 
-#copyright {
+#share {
     position: absolute;
     z-index: 99;
     color: #fff;
     font-size: 8pt;
     left: 15px;
     bottom: 10px;
+    width: 200px;
+}
+
+#copyright {
+    position: absolute;
+    z-index: 99;
+    color: #fff;
+    font-size: 8pt;
+    right: 0;
+    bottom: 10px;
+    width: 140px;
 }
 
 #empty-box {
