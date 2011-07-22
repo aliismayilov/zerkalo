@@ -35,6 +35,16 @@
     margin-top: 10px;
 }
 
+#full-link {
+    color: #fff;
+    text-decoration: none;
+    clear: both;
+}
+
+#full-link:hover {
+    text-decoration: underline;
+}
+
 #copyright {
     position: absolute;
     z-index: 99;

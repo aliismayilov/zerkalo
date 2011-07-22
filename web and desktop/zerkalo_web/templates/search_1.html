@@ -1,12 +1,19 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
+﻿<!DOCTYPE html>
+<html lang="ru" xmlns="http://www.w3.org/1999/xhtml">
 <head>
+    <meta charset="utf-8" />
     <title>Результаты для {{ query }}</title>
+    <script type="text/javascript">
+        // check device
+        if (screen.width < 400 && screen.height < 400)
+            window.location = window.location.href.replace('.az', '.az/m1').replace(':8000/', ':8000/m1');
+        else if (screen.width < 1000 && screen.height < 700)
+            window.location = window.location.href.replace('.az', '.az/m').replace(':8000/', ':8000/m');
+    </script>
     <link rel="stylesheet" href="{{ STATIC_URL }}imageflow/imageflow.packed.css" type="text/css" />
     <script type="text/javascript" src="{{ STATIC_URL }}imageflow/imageflow.packed.js"></script>
     <link rel="stylesheet" href="{{ STATIC_URL }}css/main_1.css" type="text/css" />
-    <script src="{{ STATIC_URL }}js/jquery-1.6.1.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
     <script type="text/javascript">
         {% include "calendar.js" %}
     </script>

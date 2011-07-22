@@ -10,53 +10,65 @@
 <body>
 <div id="top-bar">
     <a href="/" id="calendar-icon"></a>
-    <input type="text" id="day" maxlength="2" />
+    <input type="text" id="day" maxlength="2" value="{{ edition.date|date:"j" }}" />
     <select id="month">
-        <option value="1">Январь</option>
-        <option value="2">Февраль</option>
-        <option value="3">Март</option>
-        <option value="4">Апрель</option>
-        <option value="5">Май</option>
-        <option value="6">Июнь</option>
-        <option value="7">Июль</option>
-        <option value="8">Август</option>
-        <option value="9">Сентябрь</option>
-        <option value="10">Октябрь</option>
-        <option value="11">Ноябрь</option>
-        <option value="12">Декабрь</option>
+        {% comment %}Javascript way didn't work! {% endcomment %}
+        <option value="1"{% ifequal edition.date|date:"n" "1" %} selected="selected"{% endifequal %}>Январь</option>
+        <option value="2"{% ifequal edition.date|date:"n" "2" %} selected="selected"{% endifequal %}>Февраль</option>
+        <option value="3"{% ifequal edition.date|date:"n" "3" %} selected="selected"{% endifequal %}>Март</option>
+        <option value="4"{% ifequal edition.date|date:"n" "4" %} selected="selected"{% endifequal %}>Апрель</option>
+        <option value="5"{% ifequal edition.date|date:"n" "5" %} selected="selected"{% endifequal %}>Май</option>
+        <option value="6"{% ifequal edition.date|date:"n" "6" %} selected="selected"{% endifequal %}>Июнь</option>
+        <option value="7"{% ifequal edition.date|date:"n" "7" %} selected="selected"{% endifequal %}>Июль</option>
+        <option value="8"{% ifequal edition.date|date:"n" "8" %} selected="selected"{% endifequal %}>Август</option>
+        <option value="9"{% ifequal edition.date|date:"n" "9" %} selected="selected"{% endifequal %}>Сентябрь</option>
+        <option value="10"{% ifequal edition.date|date:"n" "10" %} selected="selected"{% endifequal %}>Октябрь</option>
+        <option value="11"{% ifequal edition.date|date:"n" "11" %} selected="selected"{% endifequal %}>Ноябрь</option>
+        <option value="12"{% ifequal edition.date|date:"n" "12" %} selected="selected"{% endifequal %}>Декабрь</option>
     </select>
     <select id="year">
-        <option value="2009">2009</option>
-        <option value="2010">2010</option>
-        <option value="2011">2011</option>
+        {% comment %}Javascript way didn't work! {% endcomment %}
+        <option value="2009"{% ifequal edition.date|date:"Y" "2009" %} selected="selected"{% endifequal %}>2009</option>
+        <option value="2010"{% ifequal edition.date|date:"Y" "2010" %} selected="selected"{% endifequal %}>2010</option>
+        <option value="2011"{% ifequal edition.date|date:"Y" "2011" %} selected="selected"{% endifequal %}>2011</option>
     </select>
     <input type="button" value="->" onclick="goTo()" />
     <script type="text/javascript">
-        // set to current date
-        var months = document.getElementById("month").getElementsByTagName("option");
-        months[{{ edition.date|date:"m" }} - 1].setAttribute('selected', 'selected');
-        
-        var years = document.getElementById("year").getElementsByTagName("option");
-        years[{{ edition.date|date:"Y" }} - 2009].setAttribute('selected', 'selected');
-        
         function goTo() {
             // go to date
             var day = document.getElementById("day").value;
             if (day == null)
                 return;
+            day = pad(day);
             var month = document.getElementById("month").value;
+            month = pad(month);
             var year = document.getElementById("year").value;
-            window.location = "/" + year + "-" + month + "-" + day;
+            
+            if (year < 2011)
+                window.location = "http://zerkalo.az/" + year + "-" + month + "-" + day;
+            else if (year == 2011 && parseInt(month) < 7)
+                window.location = "http://zerkalo.az/" + year + "-" + month + "-" + day;
+            else if (year == 2011 && parseInt(month) == 7 && parseInt(day) < 20)
+                window.location = "http://zerkalo.az/" + year + "-" + month + "-" + day;
+            else
+                window.location = "/" + year + "-" + month + "-" + day;
+        }
+        
+        function pad(num) {
+            if (num.toString().length == 1)
+                num = '0' + num;
+            
+            return num;
         }
     </script>
     <link rel="shortcut icon" href="/static/favicon.ico" />
 </div>
 
-<a href="{{ edition.pdf.url }}">Прочесть PDF в полном формате</a>
+<a href="{{ edition.pdf.url }}" id="full-link">Прочесть PDF в полном формате</a>
 <table id="copyright">
     <tr>
         <td>
-            <img src="{{ STATIC_URL }}img/logo.png" width="70" height="27" alt="zerkalo.az" />
+            <img src="{{ STATIC_URL }}img/logo.gif" width="70" height="27" alt="zerkalo.az" />
         </td>
         <td>&copy; {% now "Y" %}</td>
     </tr>
