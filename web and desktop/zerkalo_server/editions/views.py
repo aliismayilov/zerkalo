@@ -52,10 +52,10 @@ def show(request, year=None, month=None, day=None):
         )
 
 def search(request):
-    q = request.GET.get('q')
+    query = request.GET.get('q')
     
-    if q:
-        list = Page.objects.filter(index__icontains=unicode(query))
+    if query:
+        list = Page.objects.filter(text__icontains=unicode(query))
         
         # browser level 1 - full, desktop
         if request.browser_level == 1:

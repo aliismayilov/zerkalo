@@ -74,6 +74,7 @@
     float: right;
     margin-top: 12px;
     margin-right: 26px;
+    width: 146px;
 }
 
 #search input {
@@ -134,4 +135,19 @@
     font-size: 8pt;
     left: 15px;
     bottom: 10px;
+}
+
+#empty-box {
+    text-align: center;
+    color: white;
+    font-size: 14pt;
+}
+
+#empty-box a, #empty-box a:link {
+    color: white;
+    text-decoration: none;
+}
+
+#empty-box a:hover {
+    text-decoration: underline;
 }

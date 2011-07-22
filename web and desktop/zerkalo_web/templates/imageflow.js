@@ -1,4 +1,4 @@
-﻿/*
+/*
 Name:       ImageFlow
 Version:    1.3.0 (March 9 2010)
 Author:     Finn Rudolph
@@ -1465,12 +1465,5 @@ domReadyEvent.init();
 domReady(function()
 {
 	var instanceOne = new ImageFlow();
-	instanceOne.init({
-        ImageFlowID:'myImageFlow',
-        reflections: false, 
-        reflectionP: 0.0,
-        preloadImages: false,
-        opacity: true,
-        imageCursor: 'pointer',
-    });
+	instanceOne.init({ ImageFlowID:'myImageFlow', reflections: false, reflectionP: 0.0, preloadImages: false, opacity: true, imageCursor: 'pointer' });
 });

@@ -1,4 +1,4 @@
-﻿{% if edition %}
+{% if edition %}
     var editionDay = {{ edition.date|date:"j" }};
     var editionMonth = {{ edition.date|date:"m" }};
     var editionYear = {{ edition.date|date:"Y" }};
@@ -8,8 +8,8 @@
     var editionYear = {% now "Y" %};
 {% endif %}
 var firstEditionYear = 2011
-var firstEditionMonth = 6
-var firstEditionDay = 29
+var firstEditionMonth = 7
+var firstEditionDay = 20
 
 
 thirtyOne = [ 1, 3, 5, 7, 8, 10, 12 ];
@@ -34,6 +34,10 @@ $(document).ready(function() {
     else {
         $('#months').css('margin-top', -16 * (12 - editionMonth));
     }
+
+
+    if (navigator.appName == "Microsoft Internet Explorer" && document.getElementById('myImageFlow_images') == null)
+        location.reload();
 });
 
 function pad(num) {

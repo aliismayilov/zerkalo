@@ -14,7 +14,7 @@ class MobileDetectionMiddleware(object):
             user_agent = request.META['HTTP_USER_AGENT']
             
             # Test advanced mobile values.
-            pattern_2 = "(phone|android|iemobile)"
+            pattern_2 = "(phone|android|iemobile|symbian/3)"
             prog_2 = re.compile(pattern_2, re.IGNORECASE)
             match = prog_2.search(user_agent)
             

@@ -88,3 +88,6 @@ def search(request):
             )
     else:
         return redirect("/")
+
+"""def if_ie6(request):
+    user_agent = request.META['HTTP_USER_AGENT']"""
