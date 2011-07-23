@@ -76,7 +76,7 @@ function yearDown() {
 
 function monthUp() {
     if (((editionMonth == 7 && editionYear == 2009) == false) // earliest date in archive is 1-Jul-2009
-        && editionMonth != 12) {
+        && editionMonth != 1) {
         $('#months').animate({
             marginTop: '-=16px'
         }, 200);
