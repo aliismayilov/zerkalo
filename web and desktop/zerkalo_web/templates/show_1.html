@@ -59,14 +59,14 @@
 {% for chapter in edition.chapter_set.all %}
     <input type="button" value="{{ chapter.name }}" id="jump{{ forloop.counter }}" />
 {% endfor %}
-    <a href="{{ edition.pdf.url }}" id="full-link">Прочесть PDF в полном формате</a>
+    <p><a href="{{ edition.pdf.url }}" id="full-link">Прочесть PDF в полном формате</a></p>
 </div>
 <div id="share">
-    <iframe src="http://www.facebook.com/plugins/like.php?app_id=121980491228556&amp;href={{ edition.get_absolute_url }}&amp;send=false&amp;layout=button_count&amp;width=150&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:150px; height:21px;" allowTransparency="true"></iframe>
+    <iframe src="http://www.facebook.com/plugins/like.php?app_id=189663264427698&amp;href=http://new.zerkalo.az{{ edition.get_absolute_url }}&amp;send=false&amp;layout=button_count&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:21px;" allowTransparency="true"></iframe>
     <br />
-    <a href="http://twitter.com/share" class="twitter-share-button" data-url="{{ edition.get_absolute_url }}" data-count="horizontal">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+    <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://new.zerkalo.az{{ edition.get_absolute_url }}" data-count="horizontal">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
     <br />
-    <g:plusone size="medium" href="{{ edition.get_absolute_url }}"></g:plusone>
+    <g:plusone href="http://new.zerkalo.az{{ edition.get_absolute_url }}"></g:plusone>
 </div>
 <table id="copyright">
     <tr>
