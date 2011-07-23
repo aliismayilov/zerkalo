@@ -85,7 +85,7 @@
     <img src="{{ page.screenshot.url }}" longdesc="{{ page.pdf.url }}" width="{{ page.screenshot.width }}" height="{{ page.screenshot.height }}" alt="" />
 {% endfor %}
 </div>
-<p><a href="{{ edition.pdf.url }}" id="full-link">Прочесть PDF в полном формате</a></p>
+<p><a href="{{ edition.pdf.url }}" id="full-link">Скачать PDF в полном формате ({{ edition.pdf.size|filesizeformat }})</a></p>
 <div id="share">
     <iframe src="http://www.facebook.com/plugins/like.php?app_id=189663264427698&amp;href=http://new.zerkalo.az{{ edition.get_absolute_url }}&amp;send=false&amp;layout=button_count&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:21px;" allowTransparency="true"></iframe>
     <br />
