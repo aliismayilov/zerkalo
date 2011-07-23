@@ -17,13 +17,13 @@ thirty = [ 4, 6, 9, 11 ];
 
 
 $(document).ready(function() {
-    // fill in years
+    /* fill in years */
     for (var i = {% now "Y" %}; i > 2008; i--) {
         $('#years').append(i + '<br />');
     }
     
     
-    // fill in days
+    /* fill in days */
     fillDays(editionDay, editionMonth, editionYear);
     
     
@@ -35,11 +35,11 @@ $(document).ready(function() {
         $('#months').css('margin-top', -16 * (12 - editionMonth));
     }
 
-    // Internet Explorer trick
+    /* Internet Explorer trick */
     if (navigator.appName == "Microsoft Internet Explorer" && document.getElementById('myImageFlow_images') == null)
         location.reload();
         
-    // remove bottom pad
+    /* remove bottom pad */
     $('#myImageFlow').css('height', '-=40');
 });
 
@@ -75,7 +75,7 @@ function yearDown() {
 }
 
 function monthUp() {
-    if (((editionMonth == 7 && editionYear == 2009) == false) // earliest date in archive is 1-Jul-2009
+    if (((editionMonth == 7 && editionYear == 2009) == false) /* earliest date in archive is 1-Jul-2009 */
         && editionMonth != 1) {
         $('#months').animate({
             marginTop: '-=16px'
