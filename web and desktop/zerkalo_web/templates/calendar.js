@@ -118,11 +118,13 @@ function fillDays(day, month, year) {
         else {
             if (nowDate && day == i) {
                 $('#days').append('<a href="/' + year + '-' + pad(month) + '-' + pad(i) + '" class="current">' + i + '</a>');
-                break;
             }
             else {
                 $('#days').append('<a href="/' + year + '-' + pad(month) + '-' + pad(i) + '">' + i + '</a>');
             }
+            
+            if (nowDate && i == {% now "j" %})
+                break;
         }
     }
 }
