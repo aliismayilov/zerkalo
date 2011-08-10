@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html lang="ru" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>{{ edition.date|date:"j F Y" }}</title>
+    <script type="text/javascript">
+        /* check device */
+        if (screen.width < 400 || screen.height < 400)
+            window.location = window.location.href.replace('.az', '.az/m1').replace(':8000/', ':8000/m1');
+        else if (screen.width < 1000 || screen.height < 700)
+            window.location = window.location.href.replace('.az', '.az/m').replace(':8000/', ':8000/m');
+    </script>
+    <link rel="stylesheet" href="{{ STATIC_URL }}imageflow/imageflow.packed.css" type="text/css" />
+    <script type="text/javascript" src="{{ STATIC_URL }}imageflow/imageflow.packed.js"></script>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/main_2.css" type="text/css" />
+    <link rel="shortcut icon" href="/static/favicon.ico" />
+    <link rel="author" href="/humans.txt" />
+    <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+    <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24716636-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+<div id="search">
+    <form method="get" action="/search.html" id="search-form">
+        <input name="q" type="text" value="{{ query }}" />
+        <a href="javascript():" onclick="document.getElementById('search-form').submit(); return false;"></a>
+    </form>
+</div>
+<div id="top-bar">
+    <a href="/" id="calendar-icon"></a>
+    <input type="text" id="day" maxlength="2" value="{{ edition.date|date:"j" }}" />
+    <select id="month">
+        {% comment %}Javascript way didn't work! {% endcomment %}
+        <option value="1"{% ifequal edition.date|date:"n" "1" %} selected="selected"{% endifequal %}>Yanvar</option>
+        <option value="2"{% ifequal edition.date|date:"n" "2" %} selected="selected"{% endifequal %}>Fevral</option>
+        <option value="3"{% ifequal edition.date|date:"n" "3" %} selected="selected"{% endifequal %}>Mart</option>
+        <option value="4"{% ifequal edition.date|date:"n" "4" %} selected="selected"{% endifequal %}>Aprel</option>
+        <option value="5"{% ifequal edition.date|date:"n" "5" %} selected="selected"{% endifequal %}>May</option>
+        <option value="6"{% ifequal edition.date|date:"n" "6" %} selected="selected"{% endifequal %}>İyun</option>
+        <option value="7"{% ifequal edition.date|date:"n" "7" %} selected="selected"{% endifequal %}>İyul</option>
+        <option value="8"{% ifequal edition.date|date:"n" "8" %} selected="selected"{% endifequal %}>Avqust</option>
+        <option value="9"{% ifequal edition.date|date:"n" "9" %} selected="selected"{% endifequal %}>Sentyabr</option>
+        <option value="10"{% ifequal edition.date|date:"n" "10" %} selected="selected"{% endifequal %}>Oktyabr</option>
+        <option value="11"{% ifequal edition.date|date:"n" "11" %} selected="selected"{% endifequal %}>Noyabr</option>
+        <option value="12"{% ifequal edition.date|date:"n" "12" %} selected="selected"{% endifequal %}>Dekabr</option>
+    </select>
+    <select id="year">
+        {% comment %}Javascript way didn't work! {% endcomment %}
+        <option value="2009"{% ifequal edition.date|date:"Y" "2009" %} selected="selected"{% endifequal %}>2009</option>
+        <option value="2010"{% ifequal edition.date|date:"Y" "2010" %} selected="selected"{% endifequal %}>2010</option>
+        <option value="2011"{% ifequal edition.date|date:"Y" "2011" %} selected="selected"{% endifequal %}>2011</option>
+    </select>
+    <input type="button" value="->" onclick="goTo()" />
+    <script type="text/javascript">
+        function goTo() {
+            /* go to date */
+            var day = document.getElementById("day").value;
+            if (day == null)
+                return;
+            day = pad(day);
+            var month = document.getElementById("month").value;
+            month = pad(month);
+            var year = document.getElementById("year").value;
+            
+            if (year < 2011)
+                window.location = "http://ayna.az/" + year + "-" + month + "-" + day;
+            else if (year == 2011 && parseInt(month) < 7)
+                window.location = "http://ayna.az/" + year + "-" + month + "-" + day;
+            else if (year == 2011 && parseInt(month) == 7 && parseInt(day) < 20)
+                window.location = "http://ayna.az/" + year + "-" + month + "-" + day;
+            else
+                window.location = "/" + year + "-" + month + "-" + day;
+        }
+        
+        function pad(num) {
+            if (num.toString().length == 1)
+                num = '0' + num;
+            
+            return num;
+        }
+    </script>
+</div>
+
+<div id="myImageFlow" class="imageflow">
+{% for page in edition.page_set.all %}
+    <img src="{{ page.screenshot.url }}" longdesc="{{ page.pdf.url }}" width="{{ page.screenshot.width }}" height="{{ page.screenshot.height }}" alt="" />
+{% endfor %}
+</div>
+<p><a href="{{ edition.pdf.url }}" id="full-link">Tam formatda PDF ({{ edition.pdf.size|filesizeformat }})</a></p>
+<div id="share">
+    <iframe src="http://www.facebook.com/plugins/like.php?app_id=189663264427698&amp;href=http://new.ayna.az{{ edition.get_absolute_url }}&amp;send=false&amp;layout=button_count&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:21px;" allowTransparency="true"></iframe>
+    <br />
+    <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://new.ayna.az{{ edition.get_absolute_url }}" data-count="horizontal">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+    <br />
+    <g:plusone href="http://new.ayna.az{{ edition.get_absolute_url }}"></g:plusone>
+</div>
+<table id="copyright">
+    <tr>
+        <td>{% now "Y" %} &copy;</td>
+        <td>
+            <img src="{{ STATIC_URL }}img/logo.gif" width="70" height="27" alt="zerkalo.az" />
+        </td>
+    </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <title>{{ edition.date|date:"j F Y" }}</title>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/main_3.css" type="text/css" />
+    <link rel="shortcut icon" href="/static/favicon.ico" />
+    <link rel="author" href="/humans.txt" />
+    <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24716636-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+<div id="top-bar">
+    <a href="/" id="calendar-icon"></a>
+    <input type="text" id="day" maxlength="2" value="{{ edition.date|date:"j" }}" />
+    <select id="month">
+        {% comment %}Javascript way didn't work! {% endcomment %}
+        <option value="1"{% ifequal edition.date|date:"n" "1" %} selected="selected"{% endifequal %}>Yanvar</option>
+        <option value="2"{% ifequal edition.date|date:"n" "2" %} selected="selected"{% endifequal %}>Fevral</option>
+        <option value="3"{% ifequal edition.date|date:"n" "3" %} selected="selected"{% endifequal %}>Mart</option>
+        <option value="4"{% ifequal edition.date|date:"n" "4" %} selected="selected"{% endifequal %}>Aprel</option>
+        <option value="5"{% ifequal edition.date|date:"n" "5" %} selected="selected"{% endifequal %}>May</option>
+        <option value="6"{% ifequal edition.date|date:"n" "6" %} selected="selected"{% endifequal %}>İyun</option>
+        <option value="7"{% ifequal edition.date|date:"n" "7" %} selected="selected"{% endifequal %}>İyul</option>
+        <option value="8"{% ifequal edition.date|date:"n" "8" %} selected="selected"{% endifequal %}>Avqust</option>
+        <option value="9"{% ifequal edition.date|date:"n" "9" %} selected="selected"{% endifequal %}>Sentyabr</option>
+        <option value="10"{% ifequal edition.date|date:"n" "10" %} selected="selected"{% endifequal %}>Oktyabr</option>
+        <option value="11"{% ifequal edition.date|date:"n" "11" %} selected="selected"{% endifequal %}>Noyabr</option>
+        <option value="12"{% ifequal edition.date|date:"n" "12" %} selected="selected"{% endifequal %}>Dekabr</option>
+    </select>
+    <select id="year">
+        {% comment %}Javascript way didn't work! {% endcomment %}
+        <option value="2009"{% ifequal edition.date|date:"Y" "2009" %} selected="selected"{% endifequal %}>2009</option>
+        <option value="2010"{% ifequal edition.date|date:"Y" "2010" %} selected="selected"{% endifequal %}>2010</option>
+        <option value="2011"{% ifequal edition.date|date:"Y" "2011" %} selected="selected"{% endifequal %}>2011</option>
+    </select>
+    <input type="button" value="->" onclick="goTo()" />
+    <script type="text/javascript">
+        function goTo() {
+            /* go to date */
+            var day = document.getElementById("day").value;
+            if (day == null)
+                return;
+            day = pad(day);
+            var month = document.getElementById("month").value;
+            month = pad(month);
+            var year = document.getElementById("year").value;
+            
+            if (year < 2011)
+                window.location = "http://ayna.az/" + year + "-" + month + "-" + day;
+            else if (year == 2011 && parseInt(month) < 7)
+                window.location = "http://ayna.az/" + year + "-" + month + "-" + day;
+            else if (year == 2011 && parseInt(month) == 7 && parseInt(day) < 20)
+                window.location = "http://ayna.az/" + year + "-" + month + "-" + day;
+            else
+                window.location = "/" + year + "-" + month + "-" + day;
+        }
+        
+        function pad(num) {
+            if (num.toString().length == 1)
+                num = '0' + num;
+            
+            return num;
+        }
+    </script>
+    <link rel="shortcut icon" href="/static/favicon.ico" />
+</div>
+
+<a href="{{ edition.pdf.url }}" id="full-link">Tam formatda PDF ({{ edition.pdf.size|filesizeformat }})</a>
+<table id="copyright">
+    <tr>
+        <td>
+            <img src="{{ STATIC_URL }}img/logo.gif" width="70" height="27" alt="zerkalo.az" />
+        </td>
+        <td>&copy; {% now "Y" %}</td>
+    </tr>
+</table>
+</body>
+</html>

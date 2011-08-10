@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>{{ edition.date|date:"j F Y" }}</title>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/main_1.css" type="text/css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+    <script type="text/javascript">
+        {% include "calendar.js" %}
+    </script>
+    <link rel="shortcut icon" href="/static/favicon.ico" />
+</head>
+<body>
+<div id="top-bar">
+    <a href="/" id="calendar-icon"></a>
+    <div class="year-month">
+        <div id="year-up" onmousedown="yearUp()"></div>
+        <div class="year-month-container">
+            <div id="years"></div>
+        </div>
+        <div id="year-down" onmousedown="yearDown()"></div>
+    </div>
+    <div class="year-month">
+        <div id="month-up" onmousedown="monthUp()"></div>
+        <div class="year-month-container">
+            <div id="months">Dekabr<br />Noyabr<br />Oktyabr<br />Sentyabr<br />Avqust<br />İyul<br />İyun<br />May<br />Aprel<br />Mart<br />Fevral<br />Yanvar</div>
+        </div>
+        <div id="month-down" onmousedown="monthDown()"></div>
+    </div>
+    <div id="days"></div>
+    <div id="search">
+        <form method="get" action="/search.html" id="search-form">
+            <input name="q" type="text" value="{{ query }}" />
+            <a href="javascript():" onclick="document.getElementById('search-form').submit(); return false;"></a>
+        </form>
+    </div>
+</div>
+
+<div id="empty-box">
+    <a href="{{ edition.pdf.url }}">Tam formatda PDF</a>
+</div>
+<table id="copyright">
+    <tr>
+        <td>
+            <img src="{{ STATIC_URL }}img/logo.gif" width="70" height="27" alt="zerkalo.az" />
+        </td>
+        <td>&copy; {% now "Y" %}</td>
+    </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>{{ edition.date|date:"j F Y" }}</title>
+    <script type="text/javascript">
+        /* check device */
+        if (screen.width < 400 || screen.height < 400)
+            window.location = window.location.href.replace('.az', '.az/m1').replace(':8000/', ':8000/m1');
+        else if (screen.width < 1000 || screen.height < 700)
+            window.location = window.location.href.replace('.az', '.az/m').replace(':8000/', ':8000/m');
+    </script>
+    <link rel="stylesheet" href="{{ STATIC_URL }}imageflow/imageflow.packed.css" type="text/css" />
+    <script type="text/javascript">
+        {% include "imageflow.js" %}
+    </script>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/main_1.css" type="text/css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+    <script type="text/javascript">
+        {% include "calendar.js" %}
+    </script>
+    <link rel="shortcut icon" href="/static/favicon.ico" />
+    <link rel="author" href="/humans.txt" />
+    <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+    <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24716636-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+<div id="top-bar">
+    <a href="/" id="calendar-icon"></a>
+    <div class="year-month">
+        <div id="year-up" onmousedown="yearUp()"></div>
+        <div class="year-month-container">
+            <div id="years"></div>
+        </div>
+        <div id="year-down" onmousedown="yearDown()"></div>
+    </div>
+    <div class="year-month">
+        <div id="month-up" onmousedown="monthUp()"></div>
+        <div class="year-month-container">
+            <div id="months">Dekabr<br />Noyabr<br />Oktyabr<br />Sentyabr<br />Avqust<br />İyul<br />İyun<br />May<br />Aprel<br />Mart<br />Fevral<br />Yanvar</div>
+        </div>
+        <div id="month-down" onmousedown="monthDown()"></div>
+    </div>
+    <div id="days"></div>
+    <div id="search">
+        <form method="get" action="/search.html" id="search-form">
+            <input name="q" type="text" value="{{ query }}" />
+            <a href="javascript():" onclick="document.getElementById('search-form').submit(); return false;"></a>
+        </form>
+    </div>
+</div>
+
+<div id="myImageFlow" class="imageflow">
+{% for page in edition.page_set.all %}
+    <img src="{{ page.screenshot.url }}" longdesc="{{ page.pdf.url }}" width="{{ page.screenshot.width }}" height="{{ page.screenshot.height }}" alt="" />
+{% endfor %}
+</div>
+<div id="chapterList">
+{% for chapter in edition.chapter_set.all %}
+    <input type="button" value="{{ chapter.name }}" id="jump{{ forloop.counter }}" />
+{% endfor %}
+    <p><a href="{{ edition.pdf.url }}" id="full-link">Tam formatda PDF</a></p>
+</div>
+<div id="share">
+    <iframe src="http://www.facebook.com/plugins/like.php?app_id=189663264427698&amp;href=http://new.ayna.az{{ edition.get_absolute_url }}&amp;send=false&amp;layout=button_count&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:21px;" allowTransparency="true"></iframe>
+    <br />
+    <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://new.ayna.az{{ edition.get_absolute_url }}" data-count="horizontal">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+    <br />
+    <g:plusone href="http://new.ayna.az{{ edition.get_absolute_url }}"></g:plusone>
+</div>
+<table id="copyright">
+    <tr>
+        <td>{% now "Y" %} &copy;</td>
+        <td>
+            <img src="{{ STATIC_URL }}img/logo.gif" width="70" height="27" alt="zerkalo.az" />
+        </td>
+    </tr>
+</table>
+</body>
+</html>
