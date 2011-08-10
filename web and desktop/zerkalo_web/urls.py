@@ -14,10 +14,14 @@ urlpatterns = patterns('editions.views',
     (r'^m1/(?P<year>\d{4})-(?P<month>\d{2})-(?P<day>\d{2})/$', 'show_m1'),
     
     (r'^search.html', 'search'),
-    (r'^m/search.html', 'search_m')
+    (r'^m/search.html', 'search_m'),
 )
 
 urlpatterns += patterns('',
+	url(r'^(?P<path>humans.txt)$', 'django.views.static.serve', {
+        'document_root': settings.MEDIA_ROOT,
+    }),
+	
     url(r'^admin/', include(admin.site.urls)),
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
         'document_root': settings.MEDIA_ROOT,
