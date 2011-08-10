@@ -101,6 +101,7 @@ def translate_txt(path, xml_path):
     os.remove(path)
     
     # remove whitespaces
+    output_string = ' '.join(output_string.split())
     
     # save to file
     output_string_utf8 = output_string.encode('UTF-8')
