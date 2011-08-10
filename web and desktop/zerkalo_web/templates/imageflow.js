@@ -407,11 +407,26 @@ function ImageFlow ()
 			my.buttonPreviousDiv.onclick = function () { my.MouseWheel.handle(1); };
 			my.buttonNextDiv.onclick = function () { my.MouseWheel.handle(-1); };
 		}
+		
+		{% if edition or number_of_pages %}
+		document.onkeyup = function() {
+			if (event.keyCode == 36)
+				my.glideTo(0);
+			else if (event.keyCode == 35)
+				{% if number_of_pages %}
+				my.glideTo({{ number_of_pages }} - 1);
+				{% else %}
+				my.glideTo({{ edition.page_set.count }} - 1);
+				{% endif %}
+		};
+		{% endif %}
         
-        {% for chapter in edition.chapter_set.all %}
-            var jump{{ forloop.counter }} = document.getElementById('jump{{ forloop.counter }}');
-            jump{{ forloop.counter }}.onclick = function() { my.glideTo({{ chapter.page_number }} - 1);};
-        {% endfor %}
+        {% if edition and not number_of_pages %}
+        	{% for chapter in edition.chapter_set.all %}
+            	var jump{{ forloop.counter }} = document.getElementById('jump{{ forloop.counter }}');
+            	jump{{ forloop.counter }}.onclick = function() { my.glideTo({{ chapter.page_number }} - 1);};
+	        {% endfor %}
+        {% endif %}
         
         /* Set the reflection multiplicator */
 		var multi = (my.reflections === true) ? my.reflectionP + 1 : 1;

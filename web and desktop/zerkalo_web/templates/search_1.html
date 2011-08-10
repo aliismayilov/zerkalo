@@ -11,7 +11,9 @@
             window.location = window.location.href.replace('.az', '.az/m').replace(':8000/', ':8000/m');
     </script>
     <link rel="stylesheet" href="{{ STATIC_URL }}imageflow/imageflow.packed.css" type="text/css" />
-    <script type="text/javascript" src="{{ STATIC_URL }}imageflow/imageflow.packed.js"></script>
+    <script type="text/javascript">
+        {% include "imageflow.js" %}
+    </script>
     <link rel="stylesheet" href="{{ STATIC_URL }}css/main_1.css" type="text/css" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
     <script type="text/javascript">

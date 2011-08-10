@@ -96,6 +96,7 @@ def search(request):
                 'edition': Edition.objects.get(pk=1),
                 'list': list,
                 'query': query,
+                'number_of_pages': list.count(),
             },
             context_instance=RequestContext(request)
         )
