@@ -56,7 +56,7 @@ for i in range(0, pdf.getNumPages()):
     
     # convert to text and save into a file
     convert_pdf(outputFileName)
-    translate_txt(outputFileName.replace('.pdf', '.txt'))
+    translate_txt(outputFileName.replace('.pdf', '.txt'), 'libs/chars_zerkalo.xml')
 
     # remove pdf page file
     # os.remove(outputFileName)

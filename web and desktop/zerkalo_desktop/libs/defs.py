@@ -78,9 +78,9 @@ def convert_pdf(path, outtype='txt', opts={}):
     outfp.close()
     return True
 
-def translate_txt(path):
+def translate_txt(path, xml_path):
     # load xml dictionary
-    xml = parse("libs/chars.xml")
+    xml = parse(xml_path)
     
     # create a dictionary
     dict = {}

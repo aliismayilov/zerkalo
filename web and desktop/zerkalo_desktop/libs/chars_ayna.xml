@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<dictionary>
+  <!-- lower -->
+  <key value="a">à</key>
+  <key value="b">á</key>
+  <key value="c">þ</key>
+  <key value="ç">÷</key>
+  <key value="d">ä</key>
+  <key value="e">å</key>
+  <key value="ə">ý</key>
+  <key value="f">ô</key>
+  <key value="g">ù</key>
+  <key value="ğ">ú</key>
+  <key value="h">ö</key>
+  <key value="x">õ</key>
+  <key value="ı">û</key>
+  <key value="i">è</key>
+  <key value="j">æ</key>
+  <key value="k">ê</key>
+  <key value="q">ã</key>
+  <key value="l">ë</key>
+  <key value="m">ì</key>
+  <key value="n">í</key>
+  <key value="o">î</key>
+  <key value="ö">ü</key>
+  <key value="p">ï</key>
+  <key value="r">ð</key>
+  <key value="s">ñ</key>
+  <key value="ş">ø</key>
+  <key value="t">ò</key>
+  <key value="u">ó</key>
+  <key value="ü">ÿ</key>
+  <key value="v">â</key>
+  <key value="y">é</key>
+  <key value="z">ç</key>
+  <!-- lower end -->
+</dictionary>
