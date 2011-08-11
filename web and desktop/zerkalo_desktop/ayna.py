@@ -69,7 +69,7 @@ pdf_file.close()
 # choose output zip filename
 zip_filename = asksaveasfilename(
     title="Save as",
-    initialfile=datetime.datetime.now().strftime("%Y-%m-%d.zip"),
+    initialfile=datetime.datetime.now().strftime("ayna-%Y-%m-%d.zip"),
     initialdir="%UserProfile%\\Desktop",
     )
 
