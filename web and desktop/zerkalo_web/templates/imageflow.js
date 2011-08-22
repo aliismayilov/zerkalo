@@ -409,10 +409,12 @@ function ImageFlow ()
 		}
 		
 		{% if edition or number_of_pages %}
-		document.onkeyup = function() {
-			if (event.keyCode == 36)
+		document.onkeyup = function(e) {
+			var keyId = (window.event) ? event.keyCode : e.keyCode;
+			
+			if (keyId == 36)
 				my.glideTo(0);
-			else if (event.keyCode == 35)
+			else if (keyId == 35)
 				{% if number_of_pages %}
 				my.glideTo({{ number_of_pages }} - 1);
 				{% else %}
