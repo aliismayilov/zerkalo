@@ -2,7 +2,7 @@
 
 #myImageFlow {
     color: #fff;
-    overflow: hidden;
+    overflow: visible;
 }
 #myImageFlow .scrollbar {
 	border-bottom: 1px solid #fff;

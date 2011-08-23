@@ -13,7 +13,7 @@
     font-size: 10pt;
     background: url(../img/top-bar.gif);
     margin-top: 25px;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
 
 #top-bar #calendar-icon {
@@ -94,15 +94,41 @@
     position: relative;
 }
 
+#chapter-wrapper {
+	width: 60%;
+	position: absolute;
+	z-index: 100;
+	margin: auto;
+    margin-top: -40px;
+	margin-left: 20%;
+    bottom: 3%;
+	overflow: hidden;
+	text-align: center;
+}
+
+#arrow-left, #arrow-right {
+	position: absolute;
+	width: 20px;
+	height: 28px;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-color: #68A2C3;
+	cursor: pointer;
+}
+
+#arrow-left {
+	left: 0;
+	background-image: url(../img/arrow-left.jpg);
+}
+
+#arrow-right {
+	right: 0;
+	background-image: url(../img/arrow-right.jpg);
+}
+
 #chapterList {
     color: #fff;
     text-align: center;
-    position: absolute;
-    width: 100%;
-    z-index: 100;
-    margin: auto;
-    margin-top: -40px;
-    bottom: 3%;
 }
 
 #chapterList input {
