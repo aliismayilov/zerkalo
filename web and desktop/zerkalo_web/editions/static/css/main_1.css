@@ -1,4 +1,4 @@
-﻿body {
+body {
     background: #68a2c3;
     margin: 0;
     padding: 0;
@@ -155,7 +155,7 @@
 
 #share {
     position: absolute;
-    z-index: 99;
+    z-index: 101;
     color: #fff;
     font-size: 8pt;
     left: 15px;
