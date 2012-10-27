@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<dictionary>
+  <!-- capital -->
+  <!-- <key value="А">À</key>
+  <key value="Б">Á</key>
+  <key value="В">Â</key>
+  <key value="Г">Ã</key>
+  <key value="Д">Ä</key>
+  <key value="Е">Å</key>
+  <key value="Ё"></key>
+  <key value="Ж">Æ</key>
+  <key value="З">Ç</key>
+  <key value="И">È</key>
+  <key value="Й"></key>
+  <key value="К">Ê</key>
+  <key value="Л"></key>
+  <key value="М">Ì</key>
+  <key value="Н">Í</key>
+  <key value="О">Î</key>
+  <key value="П">Ï</key>
+  <key value="Р">Ð</key>
+  <key value="С">Ñ</key>
+  <key value="Т">Ò</key>
+  <key value="У">Ó</key>
+  <key value="Ф"></key>
+  <key value="Х">Õ</key>
+  <key value="Ц"></key>
+  <key value="Ч"></key>
+  <key value="Ш">Ø</key>
+  <key value="Щ"></key>
+  <key value="Ъ"></key>
+  <key value="Ы"></key>
+  <key value="Ь"></key>
+  <key value="Э">Ý</key>
+  <key value="Ю">Þ</key>
+  <key value="Я"></key> -->
+  <!-- capital end -->
+  <!-- lower -->
+  <key value="а">à</key>
+  <key value="б">á</key>
+  <key value="в">â</key>
+  <key value="г">ã</key>
+  <key value="д">ä</key>
+  <key value="е">å</key>
+  <!--<key value="ё"></key>-->
+  <key value="ж">æ</key>
+  <key value="з">ç</key>
+  <key value="и">è</key>
+  <key value="й">é</key>
+  <key value="к">ê</key>
+  <key value="л">ë</key>
+  <key value="м">ì</key>
+  <key value="н">í</key>
+  <key value="о">î</key>
+  <key value="п">ï</key>
+  <key value="р">ð</key>
+  <key value="с">ñ</key>
+  <key value="т">ò</key>
+  <key value="у">ó</key>
+  <key value="ф">ô</key>
+  <key value="х">õ</key>
+  <key value="ц">ö</key>
+  <key value="ч">÷</key>
+  <key value="ш">ø</key>
+  <!--<key value="щ"></key>-->
+  <!--<key value="ъ"></key>-->
+  <key value="ы">û</key>
+  <key value="ь">ü</key>
+  <key value="э">ý</key>
+  <key value="ю">þ</key>
+  <key value="я">ÿ</key>
+  <!-- lower end -->
+</dictionary>
